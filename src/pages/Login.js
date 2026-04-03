@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import API from '../api';
@@ -7,15 +7,6 @@ function Login() {
   const navigate = useNavigate();
   const [form, setForm] = useState({ email:'', password:'' });
   const [loading, setLoading] = useState(false);
-
-  useEffect(() => {
-    const user = JSON.parse(localStorage.getItem('user'));
-    if (user) {
-      if (user.role === 'admin')    navigate('/admin/dashboard', { replace: true });
-      else if (user.role === 'security') navigate('/security/dashboard', { replace: true });
-      else navigate('/visitor/dashboard', { replace: true });
-    }
-  }, [navigate]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
